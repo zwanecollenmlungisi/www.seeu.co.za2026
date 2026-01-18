@@ -1,0 +1,9 @@
+
+## 📊 **STEP 10: INSTALL DEPENDENCIES**
+
+```bash
+# Install Node.js dependencies
+npm install
+
+# Or if npm install fails, install live-server globally
+npm install -g live-server

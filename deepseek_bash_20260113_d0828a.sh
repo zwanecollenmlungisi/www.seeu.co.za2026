@@ -1,0 +1,1 @@
+echo "seeu.co.za" > CNAME
