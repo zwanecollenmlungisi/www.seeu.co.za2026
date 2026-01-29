@@ -1,5 +1,8 @@
 // Follow this setup guide to integrate the Deno runtime with Supabase Edge Functions: https://supabase.com/docs/guides/functions
 
+// Add Deno types
+/// <reference types="deno" />
+
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
@@ -35,7 +38,7 @@ Deno.serve(async (req: Request) => {
     // Get the user from the JWT
     const { data: userData, error: userError } = await supabase.auth.getUser(jwt);
     if (userError || !userData.user) {
-      console.error('Failed to get user from JWT: - yoco payment.ts:38', userError);
+      console.error('Failed to get user from JWT: - yoco payment.ts:41', userError);
       return new Response(
         JSON.stringify({ success: false, message: 'Invalid token' }),
         { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
@@ -69,7 +72,7 @@ Deno.serve(async (req: Request) => {
     const yocoData = await yocoResponse.json();
 
     if (!yocoResponse.ok) {
-      console.error('Yoco charge failed: - yoco payment.ts:72', yocoData);
+      console.error('Yoco charge failed: - yoco payment.ts:75', yocoData);
       return new Response(
         JSON.stringify({ success: false, message: yocoData.error.message || 'Payment failed' }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
@@ -87,7 +90,7 @@ Deno.serve(async (req: Request) => {
       .eq('id', userId);
 
     if (updateError) {
-      console.error('Failed to update user profile: - yoco payment.ts:90', updateError);
+      console.error('Failed to update user profile: - yoco payment.ts:93', updateError);
       return new Response(
         JSON.stringify({ 
           success: true, 
@@ -104,7 +107,7 @@ Deno.serve(async (req: Request) => {
     );
 
   } catch (error) {
-    console.error('Error processing payment: - yoco payment.ts:107', error);
+    console.error('Error processing payment: - yoco payment.ts:110', error);
     return new Response(
       JSON.stringify({ success: false, message: 'Internal server error' }),
       { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
