@@ -4,7 +4,7 @@
 /// <reference types="deno" />
 
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.38.0';
 
 const YOCO_SECRET_KEY = Deno.env.get('pk_live_87123875V4lebnV243d4')!;
 const supabaseUrl = Deno.env.get('https://cuhmiqvzhcusxzelxxpg.supabase.co')!;
